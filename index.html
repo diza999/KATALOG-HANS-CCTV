@@ -1,0 +1,6462 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#07111f"
+  >
+
+  <title>
+    Katalog CCTV
+  </title>
+
+
+  <style>
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      margin: 0;
+      padding: 0;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: #07111f;
+      color: #eef4ff;
+    }
+
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+
+    button {
+      cursor: pointer;
+    }
+
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    .hidden {
+      display: none !important;
+    }
+
+
+    /* =====================================================
+       WARNA
+    ===================================================== */
+
+    :root {
+
+      --bg:
+        #07111f;
+
+      --bg2:
+        #0b1727;
+
+      --card:
+        #101d2d;
+
+      --card2:
+        #142337;
+
+      --border:
+        #243750;
+
+      --text:
+        #eef4ff;
+
+      --muted:
+        #9fb0c7;
+
+      --gold:
+        #ffd21a;
+
+      --gold2:
+        #d8aa00;
+
+      --green:
+        #20c997;
+
+      --red:
+        #ff5c6c;
+
+      --blue:
+        #4ea1ff;
+
+      --shadow:
+        0 18px 50px
+        rgba(0, 0, 0, 0.28);
+
+      --radius:
+        18px;
+
+    }
+
+
+    /* =====================================================
+       LOADING
+    ===================================================== */
+
+    #loadingScreen {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 9999;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+        #07111f;
+
+    }
+
+
+    .loadingBox {
+
+      width:
+        min(420px, 90%);
+
+      padding:
+        35px 25px;
+
+      text-align: center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        20px;
+
+      background:
+        #0b1727;
+
+      box-shadow:
+        var(--shadow);
+
+    }
+
+
+    .loadingLogo {
+
+      width:
+        70px;
+
+      height:
+        70px;
+
+      margin:
+        0 auto 20px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        3px solid var(--gold);
+
+      border-radius:
+        50%;
+
+      color:
+        var(--gold);
+
+      font-size:
+        30px;
+
+      font-weight:
+        900;
+
+    }
+
+
+    .spinner {
+
+      width:
+        35px;
+
+      height:
+        35px;
+
+      margin:
+        20px auto 0;
+
+      border:
+        4px solid #243750;
+
+      border-top-color:
+        var(--gold);
+
+      border-radius:
+        50%;
+
+      animation:
+        spin 0.8s linear infinite;
+
+    }
+
+
+    @keyframes spin {
+
+      to {
+        transform:
+          rotate(360deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    header {
+
+      position:
+        sticky;
+
+      top:
+        0;
+
+      z-index:
+        1000;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      background:
+        rgba(7,17,31,0.95);
+
+      backdrop-filter:
+        blur(14px);
+
+    }
+
+
+    .headerInner {
+
+      width:
+        min(1200px, 94%);
+
+      min-height:
+        70px;
+
+      margin:
+        auto;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+
+    }
+
+
+    .brand {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        12px;
+
+      min-width:
+        0;
+
+    }
+
+
+    .brandLogo {
+
+      width:
+        43px;
+
+      height:
+        43px;
+
+      flex:
+        0 0 43px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        2px solid var(--gold);
+
+      border-radius:
+        12px;
+
+      color:
+        var(--gold);
+
+      font-weight:
+        900;
+
+      font-size:
+        21px;
+
+    }
+
+
+    .brandTitle {
+
+      font-size:
+        18px;
+
+      font-weight:
+        800;
+
+      white-space:
+        nowrap;
+
+    }
+
+
+    .brandSubtitle {
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        11px;
+
+      white-space:
+        nowrap;
+
+    }
+
+
+    .headerActions {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        10px;
+
+    }
+
+
+    .cartButton {
+
+      position:
+        relative;
+
+      min-width:
+        48px;
+
+      height:
+        44px;
+
+      padding:
+        0 14px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        12px;
+
+      background:
+        var(--card);
+
+      color:
+        var(--text);
+
+      font-weight:
+        700;
+
+    }
+
+
+    .cartButton:hover {
+
+      border-color:
+        var(--gold);
+
+      color:
+        var(--gold);
+
+    }
+
+
+    .cartCount {
+
+      position:
+        absolute;
+
+      top:
+        -7px;
+
+      right:
+        -7px;
+
+      min-width:
+        22px;
+
+      height:
+        22px;
+
+      padding:
+        0 6px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        var(--gold);
+
+      color:
+        #111;
+
+      font-size:
+        11px;
+
+      font-weight:
+        900;
+
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+
+      width:
+        min(1200px, 94%);
+
+      margin:
+        30px auto 0;
+
+      padding:
+        55px 45px;
+
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        25px;
+
+      background:
+
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(255,210,26,0.16),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 15% 80%,
+          rgba(78,161,255,0.10),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #0c192a,
+          #101f33
+        );
+
+      box-shadow:
+        var(--shadow);
+
+    }
+
+
+    .heroContent {
+
+      max-width:
+        720px;
+
+      position:
+        relative;
+
+      z-index:
+        2;
+
+    }
+
+
+    .heroBadge {
+
+      display:
+        inline-flex;
+
+      padding:
+        8px 13px;
+
+      margin-bottom:
+        18px;
+
+      border:
+        1px solid
+        rgba(255,210,26,0.35);
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(255,210,26,0.08);
+
+      color:
+        var(--gold);
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .hero h1 {
+
+      margin:
+        0;
+
+      font-size:
+        clamp(32px, 5vw, 60px);
+
+      line-height:
+        1.05;
+
+    }
+
+
+    .hero h1 span {
+
+      color:
+        var(--gold);
+
+    }
+
+
+    .hero p {
+
+      margin:
+        18px 0 0;
+
+      color:
+        #b8c6d9;
+
+      font-size:
+        17px;
+
+      line-height:
+        1.7;
+
+    }
+
+
+    .heroButton {
+
+      display:
+        inline-flex;
+
+      margin-top:
+        28px;
+
+      padding:
+        13px 21px;
+
+      border:
+        0;
+
+      border-radius:
+        12px;
+
+      background:
+        var(--gold);
+
+      color:
+        #111;
+
+      font-weight:
+        900;
+
+    }
+
+
+    .heroButton:hover {
+
+      background:
+        #ffe56b;
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    main {
+
+      width:
+        min(1200px, 94%);
+
+      margin:
+        30px auto 60px;
+
+    }
+
+
+    .toolbar {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 220px;
+
+      gap:
+        12px;
+
+      margin-bottom:
+        15px;
+
+    }
+
+
+    .searchBox,
+    .sortBox {
+
+      position:
+        relative;
+
+    }
+
+
+    .searchBox input,
+    .sortBox select {
+
+      width:
+        100%;
+
+      height:
+        50px;
+
+      padding:
+        0 15px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        13px;
+
+      outline:
+        none;
+
+      background:
+        var(--card);
+
+      color:
+        var(--text);
+
+    }
+
+
+    .searchBox input:focus,
+    .sortBox select:focus {
+
+      border-color:
+        var(--gold);
+
+    }
+
+
+    .searchBox input::placeholder {
+
+      color:
+        #70829b;
+
+    }
+
+
+    .categories {
+
+      display:
+        flex;
+
+      gap:
+        8px;
+
+      overflow-x:
+        auto;
+
+      padding:
+        4px 1px 15px;
+
+      scrollbar-width:
+        thin;
+
+    }
+
+
+    .categoryButton {
+
+      flex:
+        0 0 auto;
+
+      padding:
+        9px 15px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        999px;
+
+      background:
+        var(--card);
+
+      color:
+        var(--muted);
+
+      font-weight:
+        700;
+
+    }
+
+
+    .categoryButton:hover,
+    .categoryButton.active {
+
+      border-color:
+        var(--gold);
+
+      background:
+        rgba(255,210,26,0.1);
+
+      color:
+        var(--gold);
+
+    }
+
+
+    .sectionTitle {
+
+      margin:
+        20px 0 15px;
+
+      display:
+        flex;
+
+      align-items:
+        end;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+    }
+
+
+    .sectionTitle h2 {
+
+      margin:
+        0;
+
+      font-size:
+        25px;
+
+    }
+
+
+    .sectionTitle p {
+
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+
+    }
+
+
+    /* =====================================================
+       PRODUCT GRID
+    ===================================================== */
+
+    .productGrid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+      gap:
+        16px;
+
+    }
+
+
+    .productCard {
+
+      overflow:
+        hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        var(--card);
+
+      box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.15);
+
+      transition:
+        0.2s ease;
+
+    }
+
+
+    .productCard:hover {
+
+      transform:
+        translateY(-4px);
+
+      border-color:
+        rgba(255,210,26,0.55);
+
+      box-shadow:
+        var(--shadow);
+
+    }
+
+
+    .productImage {
+
+      width:
+        100%;
+
+      height:
+        210px;
+
+      object-fit:
+        cover;
+
+      background:
+        #0a1422;
+
+    }
+
+
+    .productBody {
+
+      padding:
+        16px;
+
+    }
+
+
+    .productCategory {
+
+      color:
+        var(--gold);
+
+      font-size:
+        11px;
+
+      font-weight:
+        800;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.5px;
+
+    }
+
+
+    .productName {
+
+      min-height:
+        45px;
+
+      margin:
+        8px 0;
+
+      font-size:
+        16px;
+
+      line-height:
+        1.35;
+
+    }
+
+
+    .productPrice {
+
+      margin-bottom:
+        7px;
+
+      color:
+        var(--gold);
+
+      font-size:
+        19px;
+
+      font-weight:
+        900;
+
+    }
+
+
+    .stock {
+
+      margin-bottom:
+        13px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        12px;
+
+    }
+
+
+    .stock.available {
+
+      color:
+        var(--green);
+
+    }
+
+
+    .stock.empty {
+
+      color:
+        var(--red);
+
+    }
+
+
+    .productButtons {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        8px;
+
+    }
+
+
+    .btn {
+
+      min-height:
+        42px;
+
+      padding:
+        8px 10px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+
+      background:
+        transparent;
+
+      color:
+        var(--text);
+
+      font-weight:
+        800;
+
+    }
+
+
+    .btn:hover {
+
+      border-color:
+        var(--gold);
+
+    }
+
+
+    .btnPrimary {
+
+      border-color:
+        var(--gold);
+
+      background:
+        var(--gold);
+
+      color:
+        #111;
+
+    }
+
+
+    .btnPrimary:hover {
+
+      background:
+        #ffe56b;
+
+    }
+
+
+    .btn:disabled {
+
+      opacity:
+        0.45;
+
+      cursor:
+        not-allowed;
+
+    }
+
+
+    /* =====================================================
+       EMPTY
+    ===================================================== */
+
+    .emptyState {
+
+      padding:
+        60px 20px;
+
+      text-align:
+        center;
+
+      border:
+        1px dashed var(--border);
+
+      border-radius:
+        var(--radius);
+
+      color:
+        var(--muted);
+
+    }
+
+
+    .emptyIcon {
+
+      font-size:
+        40px;
+
+      margin-bottom:
+        10px;
+
+    }
+
+
+    /* =====================================================
+       MODAL
+    ===================================================== */
+
+    .modal {
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      z-index:
+        5000;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      padding:
+        20px;
+
+      background:
+        rgba(0,0,0,0.72);
+
+    }
+
+
+    .modalCard {
+
+      width:
+        min(680px,100%);
+
+      max-height:
+        92vh;
+
+      overflow:
+        auto;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        20px;
+
+      background:
+        var(--bg2);
+
+      box-shadow:
+        var(--shadow);
+
+    }
+
+
+    .modalHeader {
+
+      padding:
+        17px 20px;
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      border-bottom:
+        1px solid var(--border);
+
+    }
+
+
+    .modalHeader h3 {
+
+      margin:
+        0;
+
+      font-size:
+        20px;
+
+    }
+
+
+    .closeButton {
+
+      width:
+        38px;
+
+      height:
+        38px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+
+      background:
+        var(--card);
+
+      color:
+        var(--text);
+
+    }
+
+
+    .modalContent {
+
+      padding:
+        20px;
+
+    }
+
+
+    /* =====================================================
+       DETAIL
+    ===================================================== */
+
+    .detailGrid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        20px;
+
+    }
+
+
+    .detailImage {
+
+      width:
+        100%;
+
+      min-height:
+        280px;
+
+      object-fit:
+        cover;
+
+      border-radius:
+        15px;
+
+      background:
+        #091422;
+
+    }
+
+
+    .detailCategory {
+
+      color:
+        var(--gold);
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+      text-transform:
+        uppercase;
+
+    }
+
+
+    .detailTitle {
+
+      margin:
+        8px 0 10px;
+
+      font-size:
+        27px;
+
+    }
+
+
+    .detailPrice {
+
+      color:
+        var(--gold);
+
+      font-size:
+        24px;
+
+      font-weight:
+        900;
+
+    }
+
+
+    .detailDescription,
+    .detailSpec {
+
+      margin-top:
+        17px;
+
+      color:
+        var(--muted);
+
+      line-height:
+        1.65;
+
+      white-space:
+        pre-line;
+
+    }
+
+
+    .detailActions {
+
+      display:
+        flex;
+
+      gap:
+        9px;
+
+      margin-top:
+        22px;
+
+    }
+
+
+    /* =====================================================
+       CART
+    ===================================================== */
+
+    .cartList {
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      gap:
+        10px;
+
+      max-height:
+        390px;
+
+      overflow-y:
+        auto;
+
+    }
+
+
+    .cartItem {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        70px 1fr auto;
+
+      gap:
+        12px;
+
+      align-items:
+        center;
+
+      padding:
+        11px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        13px;
+
+      background:
+        var(--card);
+
+    }
+
+
+    .cartImage {
+
+      width:
+        70px;
+
+      height:
+        70px;
+
+      object-fit:
+        cover;
+
+      border-radius:
+        9px;
+
+    }
+
+
+    .cartName {
+
+      margin:
+        0 0 5px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .cartPrice {
+
+      color:
+        var(--gold);
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .quantity {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+
+      margin-top:
+        8px;
+
+    }
+
+
+    .quantity button {
+
+      width:
+        28px;
+
+      height:
+        28px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        7px;
+
+      background:
+        var(--card2);
+
+      color:
+        var(--text);
+
+    }
+
+
+    .quantity span {
+
+      min-width:
+        22px;
+
+      text-align:
+        center;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .remove {
+
+      color:
+        var(--red);
+
+      border:
+        0;
+
+      background:
+        transparent;
+
+    }
+
+
+    .cartFooter {
+
+      margin-top:
+        18px;
+
+      padding-top:
+        18px;
+
+      border-top:
+        1px solid var(--border);
+
+    }
+
+
+    .cartTotal {
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      gap:
+        10px;
+
+      margin-bottom:
+        15px;
+
+      font-size:
+        20px;
+
+      font-weight:
+        900;
+
+    }
+
+
+    /* =====================================================
+       FORM
+    ===================================================== */
+
+    .formGrid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        13px;
+
+    }
+
+
+    .formGroup {
+
+      margin-bottom:
+        13px;
+
+    }
+
+
+    .formGroup.full {
+
+      grid-column:
+        1 / -1;
+
+    }
+
+
+    .formGroup label {
+
+      display:
+        block;
+
+      margin-bottom:
+        6px;
+
+      color:
+        #c8d4e4;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .formGroup input,
+    .formGroup textarea {
+
+      width:
+        100%;
+
+      padding:
+        12px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+
+      outline:
+        none;
+
+      background:
+        var(--card);
+
+      color:
+        var(--text);
+
+    }
+
+
+    .formGroup textarea {
+
+      min-height:
+        100px;
+
+      resize:
+        vertical;
+
+    }
+
+
+    .formGroup input:focus,
+    .formGroup textarea:focus {
+
+      border-color:
+        var(--gold);
+
+    }
+
+
+    .orderSummary {
+
+      margin:
+        16px 0;
+
+      padding:
+        14px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        12px;
+
+      background:
+        var(--card);
+
+    }
+
+
+    .orderSummaryRow {
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      gap:
+        10px;
+
+      padding:
+        5px 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+
+    }
+
+
+    .orderSummaryTotal {
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      margin-top:
+        8px;
+
+      padding-top:
+        10px;
+
+      border-top:
+        1px solid var(--border);
+
+      color:
+        var(--gold);
+
+      font-size:
+        18px;
+
+      font-weight:
+        900;
+
+    }
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    #toast {
+
+      position:
+        fixed;
+
+      right:
+        20px;
+
+      bottom:
+        20px;
+
+      z-index:
+        9000;
+
+      width:
+        min(380px,calc(100% - 40px));
+
+      padding:
+        14px 16px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        13px;
+
+      background:
+        #101d2d;
+
+      color:
+        var(--text);
+
+      box-shadow:
+        var(--shadow);
+
+      transform:
+        translateY(30px);
+
+      opacity:
+        0;
+
+      pointer-events:
+        none;
+
+      transition:
+        0.25s ease;
+
+    }
+
+
+    #toast.show {
+
+      transform:
+        translateY(0);
+
+      opacity:
+        1;
+
+    }
+
+
+    #toast.success {
+
+      border-color:
+        rgba(32,201,151,0.5);
+
+    }
+
+
+    #toast.error {
+
+      border-color:
+        rgba(255,92,108,0.5);
+
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+
+      border-top:
+        1px solid var(--border);
+
+      background:
+        #050c15;
+
+    }
+
+
+    .footerInner {
+
+      width:
+        min(1200px,94%);
+
+      margin:
+        auto;
+
+      padding:
+        30px 0;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1.3fr 1fr 1fr;
+
+      gap:
+        25px;
+
+    }
+
+
+    .footerTitle {
+
+      color:
+        var(--gold);
+
+      font-weight:
+        900;
+
+      font-size:
+        18px;
+
+    }
+
+
+    .footerText {
+
+      margin-top:
+        9px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    .footerHeading {
+
+      margin-bottom:
+        9px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .footerContact {
+
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+
+      line-height:
+        1.8;
+
+    }
+
+
+    .copyright {
+
+      padding:
+        13px;
+
+      border-top:
+        1px solid var(--border);
+
+      color:
+        #687991;
+
+      text-align:
+        center;
+
+      font-size:
+        11px;
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 1000px) {
+
+      .productGrid {
+
+        grid-template-columns:
+          repeat(3,minmax(0,1fr));
+
+      }
+
+
+      .footerInner {
+
+        grid-template-columns:
+          1fr 1fr;
+
+      }
+
+    }
+
+
+    @media (max-width: 760px) {
+
+      .headerInner {
+
+        min-height:
+          62px;
+
+      }
+
+
+      .brandSubtitle {
+
+        display:
+          none;
+
+      }
+
+
+      .hero {
+
+        padding:
+          38px 24px;
+
+        border-radius:
+          18px;
+
+      }
+
+
+      .hero p {
+
+        font-size:
+          15px;
+
+      }
+
+
+      .toolbar {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .productGrid {
+
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+
+        gap:
+          10px;
+
+      }
+
+
+      .productImage {
+
+        height:
+          170px;
+
+      }
+
+
+      .productBody {
+
+        padding:
+          12px;
+
+      }
+
+
+      .productName {
+
+        min-height:
+          auto;
+
+        font-size:
+          14px;
+
+      }
+
+
+      .productPrice {
+
+        font-size:
+          16px;
+
+      }
+
+
+      .productButtons {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .detailGrid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .detailImage {
+
+        min-height:
+          220px;
+
+      }
+
+
+      .formGrid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .formGroup.full {
+
+        grid-column:
+          auto;
+
+      }
+
+
+      .footerInner {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+    }
+
+
+    @media (max-width: 430px) {
+
+      .brandTitle {
+
+        font-size:
+          15px;
+
+      }
+
+
+      .brandLogo {
+
+        width:
+          38px;
+
+        height:
+          38px;
+
+        flex-basis:
+          38px;
+
+      }
+
+
+      .productGrid {
+
+        grid-template-columns:
+          1fr 1fr;
+
+      }
+
+
+      .productImage {
+
+        height:
+          145px;
+
+      }
+
+
+      .sectionTitle {
+
+        display:
+          block;
+
+      }
+
+
+      .sectionTitle p {
+
+        margin-top:
+          5px;
+
+      }
+
+
+      .modal {
+
+        padding:
+          8px;
+
+      }
+
+
+      .modalCard {
+
+        max-height:
+          96vh;
+
+        border-radius:
+          15px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       LOADING
+  ====================================================== -->
+
+  <div id="loadingScreen">
+
+    <div class="loadingBox">
+
+      <div class="loadingLogo">
+        C
+      </div>
+
+      <strong>
+        Memuat Katalog CCTV
+      </strong>
+
+      <div class="spinner"></div>
+
+      <p
+        style="
+          color:#9fb0c7;
+          font-size:13px;
+        "
+      >
+        Menghubungkan ke database
+        Google Spreadsheet...
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header>
+
+    <div class="headerInner">
+
+      <a
+        href="#"
+        class="brand"
+      >
+
+        <div class="brandLogo">
+          C
+        </div>
+
+
+        <div>
+
+          <div
+            id="storeNameHeader"
+            class="brandTitle"
+          >
+            KATALOG CCTV
+          </div>
+
+
+          <div
+            id="storeTaglineHeader"
+            class="brandSubtitle"
+          >
+            Solusi keamanan dan pengawasan
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <div class="headerActions">
+
+        <button
+          type="button"
+          class="cartButton"
+          onclick="bukaKeranjang()"
+        >
+
+          🛒
+
+          <span
+            id="cartCount"
+            class="cartCount"
+          >
+            0
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+
+  <section class="hero">
+
+    <div class="heroContent">
+
+      <div class="heroBadge">
+        📹 KATALOG PRODUK CCTV
+      </div>
+
+
+      <h1>
+
+        Sistem Keamanan
+        <span>
+          Lebih Aman
+        </span>
+
+      </h1>
+
+
+      <p id="heroDescription">
+
+        Temukan berbagai pilihan CCTV,
+        DVR, NVR, hard disk surveillance,
+        kabel, dan perlengkapan keamanan
+        lainnya.
+
+      </p>
+
+
+      <button
+        type="button"
+        class="heroButton"
+        onclick="
+          document
+            .getElementById('produk')
+            .scrollIntoView()
+        "
+      >
+        Lihat Produk
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <main id="produk">
+
+
+    <div class="sectionTitle">
+
+      <div>
+
+        <h2>
+          Produk CCTV
+        </h2>
+
+        <p id="productInfo">
+          Memuat produk...
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="toolbar">
+
+
+      <div class="searchBox">
+
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Cari produk CCTV..."
+          autocomplete="off"
+          oninput="terapkanFilter()"
+        >
+
+      </div>
+
+
+      <div class="sortBox">
+
+        <select
+          id="sortSelect"
+          onchange="terapkanFilter()"
+        >
+
+          <option value="default">
+            Urutan Produk
+          </option>
+
+          <option value="nameAsc">
+            Nama A-Z
+          </option>
+
+          <option value="priceAsc">
+            Harga Terendah
+          </option>
+
+          <option value="priceDesc">
+            Harga Tertinggi
+          </option>
+
+          <option value="stock">
+            Stok Terbanyak
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- CATEGORY -->
+
+    <div
+      id="categories"
+      class="categories"
+    >
+
+      <button
+        type="button"
+        class="categoryButton active"
+        onclick="pilihKategori('SEMUA')"
+      >
+        Semua
+      </button>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <div
+      id="productGrid"
+      class="productGrid"
+    ></div>
+
+
+    <!-- EMPTY -->
+
+    <div
+      id="emptyState"
+      class="emptyState hidden"
+    >
+
+      <div class="emptyIcon">
+        🔍
+      </div>
+
+      <strong>
+        Produk tidak ditemukan
+      </strong>
+
+      <p>
+        Coba gunakan kata pencarian
+        atau kategori yang berbeda.
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer>
+
+    <div class="footerInner">
+
+
+      <div>
+
+        <div
+          id="storeNameFooter"
+          class="footerTitle"
+        >
+          KATALOG CCTV
+        </div>
+
+
+        <div
+          id="footerDescription"
+          class="footerText"
+        >
+          Katalog produk CCTV
+          dan perlengkapan keamanan.
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="footerHeading">
+          Kontak
+        </div>
+
+
+        <div class="footerContact">
+
+          WhatsApp:
+          <span id="footerWhatsapp">
+            -
+          </span>
+
+          <br>
+
+          Alamat:
+          <span id="footerAddress">
+            -
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="footerHeading">
+          Informasi
+        </div>
+
+
+        <div class="footerContact">
+
+          Pilih produk →
+          masukkan ke keranjang →
+          isi data pemesan →
+          kirim pesanan.
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="copyright">
+
+      ©
+      <span id="copyrightYear"></span>
+
+      <span id="copyrightStore">
+        Katalog CCTV
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       MODAL DETAIL
+  ====================================================== -->
+
+  <div
+    id="detailModal"
+    class="modal hidden"
+    onclick="
+      tutupModalJikaKlikLuar(
+        event,
+        'detailModal'
+      )
+    "
+  >
+
+    <div class="modalCard">
+
+
+      <div class="modalHeader">
+
+        <h3>
+          Detail Produk
+        </h3>
+
+
+        <button
+          type="button"
+          class="closeButton"
+          onclick="
+            tutupModal('detailModal')
+          "
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <div
+        id="detailContent"
+        class="modalContent"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL KERANJANG
+  ====================================================== -->
+
+  <div
+    id="cartModal"
+    class="modal hidden"
+    onclick="
+      tutupModalJikaKlikLuar(
+        event,
+        'cartModal'
+      )
+    "
+  >
+
+    <div class="modalCard">
+
+
+      <div class="modalHeader">
+
+        <h3>
+          🛒 Keranjang Belanja
+        </h3>
+
+
+        <button
+          type="button"
+          class="closeButton"
+          onclick="
+            tutupModal('cartModal')
+          "
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <div class="modalContent">
+
+
+        <div
+          id="cartList"
+          class="cartList"
+        ></div>
+
+
+        <div
+          id="cartEmpty"
+          class="emptyState hidden"
+        >
+
+          <div class="emptyIcon">
+            🛒
+          </div>
+
+          <strong>
+            Keranjang masih kosong
+          </strong>
+
+          <p>
+            Silakan pilih produk
+            terlebih dahulu.
+          </p>
+
+        </div>
+
+
+        <div
+          id="cartFooter"
+          class="cartFooter hidden"
+        >
+
+          <div class="cartTotal">
+
+            <span>
+              Total
+            </span>
+
+            <span id="cartTotal">
+              Rp 0
+            </span>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="btn btnPrimary"
+            style="width:100%;"
+            onclick="bukaFormPesanan()"
+          >
+            Lanjut ke Pemesanan
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL PEMESANAN
+  ====================================================== -->
+
+  <div
+    id="orderModal"
+    class="modal hidden"
+    onclick="
+      tutupModalJikaKlikLuar(
+        event,
+        'orderModal'
+      )
+    "
+  >
+
+    <div class="modalCard">
+
+
+      <div class="modalHeader">
+
+        <h3>
+          Form Pemesanan
+        </h3>
+
+
+        <button
+          type="button"
+          class="closeButton"
+          onclick="
+            tutupModal('orderModal')
+          "
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <div class="modalContent">
+
+
+        <form
+          id="orderForm"
+          onsubmit="kirimPesanan(event)"
+        >
+
+
+          <div class="formGrid">
+
+
+            <div class="formGroup">
+
+              <label
+                for="customerName"
+              >
+                Nama Pemesan *
+              </label>
+
+
+              <input
+                id="customerName"
+                type="text"
+                required
+                placeholder="Masukkan nama"
+              >
+
+            </div>
+
+
+            <div class="formGroup">
+
+              <label
+                for="customerWhatsapp"
+              >
+                Nomor WhatsApp *
+              </label>
+
+
+              <input
+                id="customerWhatsapp"
+                type="tel"
+                required
+                placeholder="Contoh: 081234567890"
+              >
+
+            </div>
+
+
+            <div class="formGroup full">
+
+              <label
+                for="customerAddress"
+              >
+                Alamat
+              </label>
+
+
+              <textarea
+                id="customerAddress"
+                placeholder="Alamat pengiriman / pemasangan"
+              ></textarea>
+
+            </div>
+
+
+            <div class="formGroup full">
+
+              <label
+                for="customerNote"
+              >
+                Catatan
+              </label>
+
+
+              <textarea
+                id="customerNote"
+                placeholder="Catatan tambahan"
+              ></textarea>
+
+            </div>
+
+          </div>
+
+
+          <div class="orderSummary">
+
+            <strong>
+              Ringkasan Pesanan
+            </strong>
+
+
+            <div
+              id="orderSummaryItems"
+            ></div>
+
+
+            <div
+              class="orderSummaryTotal"
+            >
+
+              <span>
+                Total
+              </span>
+
+              <span
+                id="orderSummaryTotal"
+              >
+                Rp 0
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <button
+            id="submitOrderButton"
+            type="submit"
+            class="btn btnPrimary"
+            style="width:100%;"
+          >
+            Kirim Pesanan
+          </button>
+
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       TOAST
+  ====================================================== -->
+
+  <div id="toast"></div>
+
+
+  <!-- =====================================================
+       JSONP
+  ====================================================== -->
+
+  <div
+    id="jsonpContainer"
+    class="hidden"
+  ></div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+    /* =====================================================
+       FOTO PRODUK DARI FOLDER GITHUB PAGES
+
+       Cara penggunaan:
+       1. Buat folder "foto" di repository GitHub.
+       2. Nama file harus sama dengan kolom FOTO di Spreadsheet.
+          Contoh: KAM-001.jpg
+       3. File tersebut diletakkan di:
+          foto/KAM-001.jpg
+
+       TIDAK PERLU Google Drive untuk foto.
+    ===================================================== */
+
+    const FOLDER_FOTO_GITHUB = 'foto/';
+
+
+    function muatSemuaFotoProduk() {
+
+      produkTampil.forEach(
+        produk => {
+
+          muatFotoKey(
+            String(
+              produk.foto ||
+              produk.id ||
+              ''
+            ).trim()
+          );
+
+        }
+      );
+
+    }
+
+
+    function muatFotoKey(key) {
+
+      key = String(key || '').trim();
+
+      if (!key) {
+        return Promise.resolve();
+      }
+
+
+      /*
+       * Jika kolom FOTO sudah berisi URL lengkap,
+       * langsung gunakan URL tersebut.
+       */
+
+      if (
+        key.startsWith('http://') ||
+        key.startsWith('https://') ||
+        key.startsWith('data:')
+      ) {
+
+        pasangFotoKeSemuaElemen(
+          key,
+          key
+        );
+
+        return Promise.resolve(key);
+
+      }
+
+
+      /*
+       * Foto sekarang dibaca langsung dari GitHub Pages.
+       * Contoh:
+       * KAM-001.jpg
+       * menjadi:
+       * foto/KAM-001.jpg
+       */
+
+      const src =
+        FOLDER_FOTO_GITHUB +
+        encodeURIComponent(key);
+
+
+      pasangFotoKeSemuaElemen(
+        key,
+        src
+      );
+
+
+      return Promise.resolve(src);
+
+    }
+
+
+    function pasangFotoKeSemuaElemen(
+      key,
+      src
+    ) {
+
+      document
+        .querySelectorAll('img[data-foto-key]')
+        .forEach(img => {
+
+          if (
+            String(img.dataset.fotoKey || '') ===
+            String(key)
+          ) {
+
+            img.src = src;
+
+          }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       1. MASUKKAN URL WEB APP APPS SCRIPT DI SINI
+    =====================================================
+
+       CONTOH:
+
+       const API_URL =
+         'https://script.google.com/macros/s/XXXXXXXX/exec';
+
+       Jangan masukkan:
+
+       ?action=getData
+
+       Cukup sampai /exec.
+    ===================================================== */
+
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycbyfx9DU0DST3QmYqAPiWP8D7W9aYjOtgfB6TuMHOa6f9ej2B-36Ty2xQjMwaIkkshxQ/exec';
+
+
+
+    /* =====================================================
+       DATA
+    ===================================================== */
+
+    let semuaProduk = [];
+
+    let produkTampil = [];
+
+    let kategoriAktif =
+      'SEMUA';
+
+    let keranjang = [];
+
+
+    const FOTO_PLACEHOLDER =
+      'https://placehold.co/800x600/101d2d/ffd21a?text=CCTV';
+
+    const fotoCache = Object.create(null);
+
+    const fotoSedangDimuat = Object.create(null);
+
+
+    let pengaturan = {
+
+      NAMA_TOKO:
+        'Katalog CCTV',
+
+      TAGLINE:
+        'Solusi keamanan dan pengawasan',
+
+      WHATSAPP:
+        '',
+
+      ALAMAT:
+        '',
+
+      DESKRIPSI:
+        'Katalog produk CCTV dan perlengkapan keamanan.'
+
+    };
+
+
+
+    /* =====================================================
+       FORMAT RUPIAH
+    ===================================================== */
+
+    function formatRupiah(nilai) {
+
+      const angka =
+
+        Number(
+
+          String(
+            nilai ?? 0
+          )
+
+          .replace(
+            /[^\d.-]/g,
+            ''
+          )
+
+        ) || 0;
+
+
+      return (
+        'Rp ' +
+        angka.toLocaleString('id-ID')
+      );
+
+    }
+
+
+
+    /* =====================================================
+       AMANKAN HTML
+    ===================================================== */
+
+    function escapeHtml(value) {
+
+      return String(
+        value ?? ''
+      )
+
+      .replace(
+        /&/g,
+        '&amp;'
+      )
+
+      .replace(
+        /</g,
+        '&lt;'
+      )
+
+      .replace(
+        />/g,
+        '&gt;'
+      )
+
+      .replace(
+        /"/g,
+        '&quot;'
+      )
+
+      .replace(
+        /'/g,
+        '&#039;'
+      );
+
+    }
+
+
+
+    /* =====================================================
+       AMANKAN JAVASCRIPT
+    ===================================================== */
+
+    function escapeJs(value) {
+
+      return String(
+        value ?? ''
+      )
+
+      .replace(
+        /\\/g,
+        '\\\\'
+      )
+
+      .replace(
+        /'/g,
+        "\\'"
+      );
+
+    }
+
+
+
+    /* =====================================================
+       NORMALISASI PRODUK
+    ===================================================== */
+
+    function normalisasiProduk(item) {
+
+      return {
+
+        id:
+
+          item.ID ??
+          item.id ??
+          '',
+
+
+        kategori:
+
+          item.KATEGORI ??
+          item.kategori ??
+          'LAINNYA',
+
+
+        nama:
+
+          item.NAMA_PRODUK ??
+          item.nama ??
+          item.NAMA ??
+          'Produk',
+
+
+        harga:
+
+          Number(
+
+            String(
+
+              item.HARGA ??
+              item.harga ??
+              0
+
+            )
+
+            .replace(
+              /[^\d.-]/g,
+              ''
+            )
+
+          ) || 0,
+
+
+        stok:
+
+          Number(
+
+            String(
+
+              item.STOK ??
+              item.stok ??
+              0
+
+            )
+
+            .replace(
+              /[^\d.-]/g,
+              ''
+            )
+
+          ) || 0,
+
+
+        foto:
+
+          item.FOTO ??
+          item.foto ??
+          '',
+
+
+        spesifikasi:
+
+          item.SPESIFIKASI ??
+          item.spesifikasi ??
+          '',
+
+
+        deskripsi:
+
+          item.DESKRIPSI ??
+          item.deskripsi ??
+          '',
+
+
+        status:
+
+          String(
+
+            item.STATUS ??
+            item.status ??
+            'AKTIF'
+
+          ).toUpperCase()
+
+      };
+
+    }
+
+
+
+    /* =====================================================
+       JSONP REQUEST
+
+       Ini yang menghindari masalah CORS
+       saat index.html berada di GitHub Pages
+       atau dibuka sebagai file lokal.
+    ===================================================== */
+
+    function requestJsonp(
+      params,
+      timeoutMs = 15000
+    ) {
+
+      return new Promise(
+        (resolve, reject) => {
+
+
+          if (
+
+            !API_URL ||
+
+            API_URL.includes(
+              'TEMPEL_URL'
+            )
+
+          ) {
+
+            reject(
+
+              new Error(
+                'URL Web App Apps Script belum ditempel di index.html.'
+              )
+
+            );
+
+            return;
+
+          }
+
+
+          const callbackName =
+
+            'cctvCallback_' +
+
+            Date.now() +
+
+            '_' +
+
+            Math.floor(
+              Math.random() * 100000
+            );
+
+
+          const script =
+            document.createElement(
+              'script'
+            );
+
+
+          let selesai =
+            false;
+
+
+          const timer =
+
+            setTimeout(
+              () => {
+
+                if (selesai) {
+                  return;
+                }
+
+
+                selesai =
+                  true;
+
+
+                cleanup();
+
+
+                reject(
+
+                  new Error(
+                    'Server tidak merespons dalam batas waktu.'
+                  )
+
+                );
+
+              },
+              timeoutMs
+            );
+
+
+          function cleanup() {
+
+            clearTimeout(
+              timer
+            );
+
+
+            try {
+
+              delete window[
+                callbackName
+              ];
+
+            } catch (error) {
+
+              window[
+                callbackName
+              ] = undefined;
+
+            }
+
+
+            if (
+              script.parentNode
+            ) {
+
+              script
+                .parentNode
+                .removeChild(
+                  script
+                );
+
+            }
+
+          }
+
+
+          window[
+            callbackName
+          ] = function(data) {
+
+
+            if (selesai) {
+              return;
+            }
+
+
+            selesai =
+              true;
+
+
+            cleanup();
+
+
+            resolve(data);
+
+          };
+
+
+          script.onerror =
+            function() {
+
+
+              if (selesai) {
+                return;
+              }
+
+
+              selesai =
+                true;
+
+
+              cleanup();
+
+
+              reject(
+
+                new Error(
+                  'Tidak dapat menghubungkan ke Web App Apps Script.'
+                )
+
+              );
+
+            };
+
+
+          const query =
+
+            new URLSearchParams(
+
+              Object.assign(
+
+                {},
+
+                params,
+
+                {
+
+                  callback:
+                    callbackName,
+
+                  _:
+                    Date.now()
+
+                }
+
+              )
+
+            );
+
+
+          script.src =
+
+            API_URL +
+
+            (
+              API_URL.includes('?')
+                ? '&'
+                : '?'
+            ) +
+
+            query.toString();
+
+
+          document
+            .getElementById(
+              'jsonpContainer'
+            )
+            .appendChild(
+              script
+            );
+
+        }
+      );
+
+    }
+
+
+
+    /* =====================================================
+       LOAD DATA
+    ===================================================== */
+
+    async function loadData() {
+
+
+      tampilkanLoading(
+        true
+      );
+
+
+      try {
+
+
+        if (
+
+          !API_URL ||
+
+          API_URL.includes(
+            'TEMPEL_URL'
+          )
+
+        ) {
+
+          throw new Error(
+            'URL Web App Apps Script belum ditempel.'
+          );
+
+        }
+
+
+        const data =
+
+          await requestJsonp({
+
+            action:
+              'getData'
+
+          });
+
+
+        if (
+          !data ||
+          data.ok !== true
+        ) {
+
+          throw new Error(
+
+            data?.message ||
+
+            'Data dari server tidak valid.'
+
+          );
+
+        }
+
+
+        prosesDataServer(
+          data
+        );
+
+
+        tampilkanToast(
+          'Katalog berhasil dimuat.',
+          'success'
+        );
+
+
+      } catch (error) {
+
+
+        console.error(
+          error
+        );
+
+
+        tampilkanToast(
+
+          error.message ||
+          'Gagal memuat data.',
+
+          'error'
+
+        );
+
+
+        tampilkanErrorKoneksi(
+          error.message
+        );
+
+
+      } finally {
+
+
+        tampilkanLoading(
+          false
+        );
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       PROSES DATA SERVER
+    ===================================================== */
+
+    function prosesDataServer(
+      data
+    ) {
+
+
+      const daftarProduk =
+
+        data.produk ??
+
+        data.products ??
+
+        data.PRODUK ??
+
+        [];
+
+
+      semuaProduk =
+
+        Array.isArray(
+          daftarProduk
+        )
+
+        ? daftarProduk
+
+            .map(
+              normalisasiProduk
+            )
+
+            .filter(
+
+              item =>
+
+                item.status !==
+                  'NONAKTIF' &&
+
+                item.status !==
+                  'TIDAK AKTIF'
+
+            )
+
+        : [];
+
+
+      const dataPengaturan =
+
+        data.pengaturan ??
+
+        data.settings ??
+
+        data.PENGATURAN ??
+
+        {};
+
+
+      if (
+        Array.isArray(
+          dataPengaturan
+        )
+      ) {
+
+
+        dataPengaturan.forEach(
+          row => {
+
+
+            const key =
+
+              row.KEY ??
+              row.key ??
+              row.NAMA ??
+              row.nama;
+
+
+            const value =
+
+              row.VALUE ??
+              row.value ??
+              row.NILAI ??
+              row.nilai ??
+              '';
+
+
+            if (key) {
+
+              pengaturan[
+                String(
+                  key
+                ).toUpperCase()
+              ] =
+                value;
+
+            }
+
+          }
+        );
+
+
+      } else if (
+
+        dataPengaturan &&
+
+        typeof dataPengaturan ===
+          'object'
+
+      ) {
+
+
+        Object.keys(
+          dataPengaturan
+        )
+
+        .forEach(
+          key => {
+
+            pengaturan[
+              String(
+                key
+              ).toUpperCase()
+            ] =
+              dataPengaturan[
+                key
+              ];
+
+          }
+        );
+
+      }
+
+
+      terapkanPengaturan();
+
+      buatKategori();
+
+      terapkanFilter();
+
+    }
+
+
+
+    /* =====================================================
+       PENGATURAN TOKO
+    ===================================================== */
+
+    function terapkanPengaturan() {
+
+
+      const namaToko =
+
+        pengaturan.NAMA_TOKO ||
+
+        'Katalog CCTV';
+
+
+      const tagline =
+
+        pengaturan.TAGLINE ||
+
+        'Solusi keamanan dan pengawasan';
+
+
+      const deskripsi =
+
+        pengaturan.DESKRIPSI ||
+
+        'Katalog produk CCTV dan perlengkapan keamanan.';
+
+
+      document.title =
+
+        namaToko +
+        ' | Katalog CCTV';
+
+
+      document.getElementById(
+        'storeNameHeader'
+      ).textContent =
+        namaToko;
+
+
+      document.getElementById(
+        'storeTaglineHeader'
+      ).textContent =
+        tagline;
+
+
+      document.getElementById(
+        'heroDescription'
+      ).textContent =
+        deskripsi;
+
+
+      document.getElementById(
+        'storeNameFooter'
+      ).textContent =
+        namaToko;
+
+
+      document.getElementById(
+        'footerDescription'
+      ).textContent =
+        deskripsi;
+
+
+      document.getElementById(
+        'footerWhatsapp'
+      ).textContent =
+
+        pengaturan.WHATSAPP ||
+        '-';
+
+
+      document.getElementById(
+        'footerAddress'
+      ).textContent =
+
+        pengaturan.ALAMAT ||
+        '-';
+
+
+      document.getElementById(
+        'copyrightStore'
+      ).textContent =
+        namaToko;
+
+    }
+
+
+
+    /* =====================================================
+       KATEGORI
+    ===================================================== */
+
+    function buatKategori() {
+
+
+      const container =
+
+        document.getElementById(
+          'categories'
+        );
+
+
+      const daftar = [
+
+        'SEMUA',
+
+        ...new Set(
+
+          semuaProduk
+
+            .map(
+
+              item =>
+
+                String(
+
+                  item.kategori ||
+
+                  'LAINNYA'
+
+                ).trim()
+
+            )
+
+            .filter(
+              Boolean
+            )
+
+        )
+
+      ];
+
+
+      container.innerHTML =
+        '';
+
+
+      daftar.forEach(
+        kategori => {
+
+
+          const button =
+
+            document.createElement(
+              'button'
+            );
+
+
+          button.type =
+            'button';
+
+
+          button.className =
+
+            'categoryButton' +
+
+            (
+
+              kategori ===
+              kategoriAktif
+
+                ? ' active'
+
+                : ''
+
+            );
+
+
+          button.textContent =
+
+            kategori ===
+            'SEMUA'
+
+              ? 'Semua'
+
+              : kategori;
+
+
+          button.onclick =
+
+            () =>
+              pilihKategori(
+                kategori
+              );
+
+
+          container.appendChild(
+            button
+          );
+
+        }
+      );
+
+    }
+
+
+
+    function pilihKategori(
+      kategori
+    ) {
+
+
+      kategoriAktif =
+        kategori;
+
+
+      document
+        .querySelectorAll(
+          '.categoryButton'
+        )
+
+        .forEach(
+          button => {
+
+
+            button.classList.toggle(
+
+              'active',
+
+              button.textContent
+                .toUpperCase() ===
+
+                (
+
+                  kategori ===
+                  'SEMUA'
+
+                    ? 'SEMUA'
+
+                    : kategori
+
+                ).toUpperCase()
+
+            );
+
+          }
+        );
+
+
+      terapkanFilter();
+
+    }
+
+
+
+    /* =====================================================
+       FILTER
+    ===================================================== */
+
+    function terapkanFilter() {
+
+
+      const keyword =
+
+        document
+          .getElementById(
+            'searchInput'
+          )
+          .value
+          .trim()
+          .toLowerCase();
+
+
+      const sort =
+
+        document
+          .getElementById(
+            'sortSelect'
+          )
+          .value;
+
+
+      produkTampil =
+
+        semuaProduk.filter(
+          item => {
+
+
+            const cocokKategori =
+
+              kategoriAktif ===
+                'SEMUA' ||
+
+              String(
+                item.kategori
+              ).toLowerCase() ===
+
+              String(
+                kategoriAktif
+              ).toLowerCase();
+
+
+            const teks =
+
+              (
+
+                item.nama +
+                ' ' +
+                item.kategori +
+                ' ' +
+                item.deskripsi +
+                ' ' +
+                item.spesifikasi
+
+              ).toLowerCase();
+
+
+            const cocokSearch =
+
+              !keyword ||
+
+              teks.includes(
+                keyword
+              );
+
+
+            return (
+
+              cocokKategori &&
+
+              cocokSearch
+
+            );
+
+          }
+        );
+
+
+      if (
+        sort === 'nameAsc'
+      ) {
+
+        produkTampil.sort(
+
+          (a,b) =>
+
+            a.nama.localeCompare(
+              b.nama,
+              'id'
+            )
+
+        );
+
+      }
+
+
+      if (
+        sort === 'priceAsc'
+      ) {
+
+        produkTampil.sort(
+
+          (a,b) =>
+            a.harga -
+            b.harga
+
+        );
+
+      }
+
+
+      if (
+        sort === 'priceDesc'
+      ) {
+
+        produkTampil.sort(
+
+          (a,b) =>
+            b.harga -
+            a.harga
+
+        );
+
+      }
+
+
+      if (
+        sort === 'stock'
+      ) {
+
+        produkTampil.sort(
+
+          (a,b) =>
+            b.stok -
+            a.stok
+
+        );
+
+      }
+
+
+      renderProduk();
+
+    }
+
+
+
+    /* =====================================================
+       RENDER PRODUK
+    ===================================================== */
+
+    function renderProduk() {
+
+
+      const grid =
+
+        document.getElementById(
+          'productGrid'
+        );
+
+
+      const empty =
+
+        document.getElementById(
+          'emptyState'
+        );
+
+
+      document.getElementById(
+        'productInfo'
+      ).textContent =
+
+        produkTampil.length +
+
+        ' produk ditampilkan';
+
+
+      grid.innerHTML =
+        '';
+
+
+      if (
+        produkTampil.length ===
+        0
+      ) {
+
+        empty.classList.remove(
+          'hidden'
+        );
+
+        return;
+
+      }
+
+
+      empty.classList.add(
+        'hidden'
+      );
+
+
+      produkTampil.forEach(
+        (
+          produk,
+          index
+        ) => {
+
+
+          grid.insertAdjacentHTML(
+
+            'beforeend',
+
+            templateProduk(
+              produk,
+              index
+            )
+
+          );
+
+        }
+      );
+
+
+      muatSemuaFotoProduk();
+
+    }
+
+
+
+    function templateProduk(
+      produk,
+      index
+    ) {
+
+
+      const foto =
+        FOTO_PLACEHOLDER;
+
+
+      const stokAda =
+
+        produk.stok >
+        0;
+
+
+      return `
+
+        <article
+          class="productCard"
+        >
+
+
+          <img
+
+            class="productImage"
+
+            src="${escapeHtml(
+              FOTO_PLACEHOLDER
+            )}"
+
+            data-foto-key="${escapeHtml(
+              String(
+                produk.foto ||
+                produk.id ||
+                ''
+              ).trim()
+            )}"
+
+            alt="${escapeHtml(
+              produk.nama
+            )}"
+
+            loading="lazy"
+
+            onerror="
+              this.src=FOTO_PLACEHOLDER;
+            "
+
+          >
+
+
+          <div
+            class="productBody"
+          >
+
+
+            <div
+              class="productCategory"
+            >
+
+              ${escapeHtml(
+                produk.kategori
+              )}
+
+            </div>
+
+
+            <h3
+              class="productName"
+            >
+
+              ${escapeHtml(
+                produk.nama
+              )}
+
+            </h3>
+
+
+            <div
+              class="productPrice"
+            >
+
+              ${formatRupiah(
+                produk.harga
+              )}
+
+            </div>
+
+
+            <div
+              class="
+                stock
+                ${
+                  stokAda
+                    ? 'available'
+                    : 'empty'
+                }
+              "
+            >
+
+              ${
+                stokAda
+
+                  ? 'Stok: ' +
+                    produk.stok
+
+                  : 'Stok habis'
+
+              }
+
+            </div>
+
+
+            <div
+              class="productButtons"
+            >
+
+
+              <button
+                type="button"
+                class="btn"
+                onclick="
+                  bukaDetail(
+                    '${escapeJs(
+                      produk.id
+                    )}'
+                  )
+                "
+              >
+
+                Detail
+
+              </button>
+
+
+              <button
+                type="button"
+                class="btn btnPrimary"
+
+                ${
+                  stokAda
+                    ? ''
+                    : 'disabled'
+                }
+
+                onclick="
+                  tambahKeKeranjang(
+                    '${escapeJs(
+                      produk.id
+                    )}'
+                  )
+                "
+              >
+
+                + Keranjang
+
+              </button>
+
+
+            </div>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }
+
+
+
+    /* =====================================================
+       DETAIL PRODUK
+    ===================================================== */
+
+    function bukaDetail(
+      id
+    ) {
+
+
+      const produk =
+
+        semuaProduk.find(
+
+          item =>
+
+            String(
+              item.id
+            ) ===
+
+            String(
+              id
+            )
+
+        );
+
+
+      if (!produk) {
+        return;
+      }
+
+
+      const foto =
+        FOTO_PLACEHOLDER;
+
+
+      const stokAda =
+
+        produk.stok >
+        0;
+
+
+      document.getElementById(
+        'detailContent'
+      ).innerHTML = `
+
+
+        <div
+          class="detailGrid"
+        >
+
+
+          <div>
+
+            <img
+
+              class="detailImage"
+
+              src="${escapeHtml(
+                FOTO_PLACEHOLDER
+              )}"
+
+              data-foto-key="${escapeHtml(
+                String(
+                  produk.foto ||
+                  produk.id ||
+                  ''
+                ).trim()
+              )}"
+
+              alt="${escapeHtml(
+                produk.nama
+              )}"
+
+              onerror="
+                this.src=FOTO_PLACEHOLDER;
+              "
+
+            >
+
+          </div>
+
+
+          <div>
+
+
+            <div
+              class="detailCategory"
+            >
+
+              ${escapeHtml(
+                produk.kategori
+              )}
+
+            </div>
+
+
+            <h2
+              class="detailTitle"
+            >
+
+              ${escapeHtml(
+                produk.nama
+              )}
+
+            </h2>
+
+
+            <div
+              class="detailPrice"
+            >
+
+              ${formatRupiah(
+                produk.harga
+              )}
+
+            </div>
+
+
+            <div
+              class="
+                stock
+                ${
+                  stokAda
+                    ? 'available'
+                    : 'empty'
+                }
+              "
+              style="margin-top:8px;"
+            >
+
+              ${
+                stokAda
+
+                  ? 'Stok tersedia: ' +
+                    produk.stok
+
+                  : 'Stok habis'
+
+              }
+
+            </div>
+
+
+            ${
+              produk.deskripsi
+
+                ? `
+
+                  <div
+                    class="detailDescription"
+                  >
+
+                    <strong>
+                      Deskripsi
+                    </strong>
+
+                    <br>
+
+                    ${escapeHtml(
+                      produk.deskripsi
+                    )}
+
+                  </div>
+
+                `
+
+                : ''
+
+            }
+
+
+            ${
+              produk.spesifikasi
+
+                ? `
+
+                  <div
+                    class="detailSpec"
+                  >
+
+                    <strong>
+                      Spesifikasi
+                    </strong>
+
+                    <br>
+
+                    ${escapeHtml(
+                      produk.spesifikasi
+                    )}
+
+                  </div>
+
+                `
+
+                : ''
+
+            }
+
+
+            <div
+              class="detailActions"
+            >
+
+
+              <button
+                type="button"
+                class="btn"
+                onclick="
+                  tutupModal(
+                    'detailModal'
+                  )
+                "
+              >
+                Tutup
+              </button>
+
+
+              <button
+                type="button"
+                class="btn btnPrimary"
+
+                ${
+                  stokAda
+                    ? ''
+                    : 'disabled'
+                }
+
+                onclick="
+                  tambahKeKeranjang(
+                    '${escapeJs(
+                      produk.id
+                    )}'
+                  );
+
+                  tutupModal(
+                    'detailModal'
+                  );
+                "
+              >
+
+                + Tambah ke Keranjang
+
+              </button>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      bukaModal(
+        'detailModal'
+      );
+
+
+      muatFotoKey(
+        String(
+          produk.foto ||
+          produk.id ||
+          ''
+        ).trim()
+      );
+
+    }
+
+
+
+    /* =====================================================
+       TAMBAH KE KERANJANG
+    ===================================================== */
+
+    function tambahKeKeranjang(
+      id
+    ) {
+
+
+      const produk =
+
+        semuaProduk.find(
+
+          item =>
+
+            String(
+              item.id
+            ) ===
+
+            String(
+              id
+            )
+
+        );
+
+
+      if (!produk) {
+
+
+        tampilkanToast(
+
+          'Produk tidak ditemukan.',
+
+          'error'
+
+        );
+
+
+        return;
+
+      }
+
+
+      if (
+        produk.stok <= 0
+      ) {
+
+
+        tampilkanToast(
+
+          'Stok produk habis.',
+
+          'error'
+
+        );
+
+
+        return;
+
+      }
+
+
+      const item =
+
+        keranjang.find(
+
+          row =>
+
+            String(
+              row.id
+            ) ===
+
+            String(
+              produk.id
+            )
+
+        );
+
+
+      if (item) {
+
+
+        if (
+
+          item.jumlah >=
+          produk.stok
+
+        ) {
+
+
+          tampilkanToast(
+
+            'Jumlah sudah mencapai stok tersedia.',
+
+            'error'
+
+          );
+
+
+          return;
+
+        }
+
+
+        item.jumlah +=
+          1;
+
+
+      } else {
+
+
+        keranjang.push({
+
+          id:
+            produk.id,
+
+          nama:
+            produk.nama,
+
+          harga:
+            produk.harga,
+
+          foto:
+            produk.foto,
+
+          stok:
+            produk.stok,
+
+          jumlah:
+            1
+
+        });
+
+      }
+
+
+      renderKeranjang();
+
+
+      tampilkanToast(
+
+        'Produk ditambahkan ke keranjang.',
+
+        'success'
+
+      );
+
+    }
+
+
+
+    /* =====================================================
+       UBAH JUMLAH
+    ===================================================== */
+
+    function ubahJumlah(
+      id,
+      perubahan
+    ) {
+
+
+      const item =
+
+        keranjang.find(
+
+          row =>
+
+            String(
+              row.id
+            ) ===
+
+            String(
+              id
+            )
+
+        );
+
+
+      if (!item) {
+        return;
+      }
+
+
+      const jumlahBaru =
+
+        item.jumlah +
+        perubahan;
+
+
+      if (
+        jumlahBaru <= 0
+      ) {
+
+
+        hapusDariKeranjang(
+          id
+        );
+
+
+        return;
+
+      }
+
+
+      if (
+        jumlahBaru >
+        item.stok
+      ) {
+
+
+        tampilkanToast(
+
+          'Jumlah melebihi stok tersedia.',
+
+          'error'
+
+        );
+
+
+        return;
+
+      }
+
+
+      item.jumlah =
+        jumlahBaru;
+
+
+      renderKeranjang();
+
+    }
+
+
+
+    /* =====================================================
+       HAPUS KERANJANG
+    ===================================================== */
+
+    function hapusDariKeranjang(
+      id
+    ) {
+
+
+      keranjang =
+
+        keranjang.filter(
+
+          item =>
+
+            String(
+              item.id
+            ) !==
+
+            String(
+              id
+            )
+
+        );
+
+
+      renderKeranjang();
+
+    }
+
+
+
+    /* =====================================================
+       TOTAL
+    ===================================================== */
+
+    function totalKeranjang() {
+
+
+      return keranjang.reduce(
+
+        (
+          total,
+          item
+        ) =>
+
+          total +
+
+          (
+            item.harga *
+            item.jumlah
+          ),
+
+        0
+
+      );
+
+    }
+
+
+
+    function jumlahBarangKeranjang() {
+
+
+      return keranjang.reduce(
+
+        (
+          total,
+          item
+        ) =>
+
+          total +
+          item.jumlah,
+
+        0
+
+      );
+
+    }
+
+
+
+    /* =====================================================
+       RENDER KERANJANG
+    ===================================================== */
+
+    function renderKeranjang() {
+
+
+      const list =
+
+        document.getElementById(
+          'cartList'
+        );
+
+
+      const empty =
+
+        document.getElementById(
+          'cartEmpty'
+        );
+
+
+      const footer =
+
+        document.getElementById(
+          'cartFooter'
+        );
+
+
+      document.getElementById(
+        'cartCount'
+      ).textContent =
+
+        jumlahBarangKeranjang();
+
+
+      list.innerHTML =
+        '';
+
+
+      if (
+        keranjang.length ===
+        0
+      ) {
+
+
+        empty.classList.remove(
+          'hidden'
+        );
+
+
+        footer.classList.add(
+          'hidden'
+        );
+
+
+        return;
+
+      }
+
+
+      empty.classList.add(
+        'hidden'
+      );
+
+
+      footer.classList.remove(
+        'hidden'
+      );
+
+
+      keranjang.forEach(
+        item => {
+
+
+          const foto =
+            FOTO_PLACEHOLDER;
+
+
+          list.insertAdjacentHTML(
+
+            'beforeend',
+
+            `
+
+              <div
+                class="cartItem"
+              >
+
+
+                <img
+
+                  class="cartImage"
+
+                  src="${escapeHtml(
+                    FOTO_PLACEHOLDER
+                  )}"
+
+                  data-foto-key="${escapeHtml(
+                    String(
+                      item.foto ||
+                      item.id ||
+                      ''
+                    ).trim()
+                  )}"
+
+                  alt="${escapeHtml(
+                    item.nama
+                  )}"
+
+                  onerror="
+                    this.src=FOTO_PLACEHOLDER;
+                  "
+
+                >
+
+
+                <div>
+
+
+                  <p
+                    class="cartName"
+                  >
+
+                    ${escapeHtml(
+                      item.nama
+                    )}
+
+                  </p>
+
+
+                  <div
+                    class="cartPrice"
+                  >
+
+                    ${formatRupiah(
+                      item.harga
+                    )}
+
+                  </div>
+
+
+                  <div
+                    class="quantity"
+                  >
+
+
+                    <button
+                      type="button"
+                      onclick="
+                        ubahJumlah(
+                          '${escapeJs(
+                            item.id
+                          )}',
+                          -1
+                        )
+                      "
+                    >
+                      −
+                    </button>
+
+
+                    <span>
+                      ${item.jumlah}
+                    </span>
+
+
+                    <button
+                      type="button"
+                      onclick="
+                        ubahJumlah(
+                          '${escapeJs(
+                            item.id
+                          )}',
+                          1
+                        )
+                      "
+                    >
+                      +
+                    </button>
+
+
+                  </div>
+
+                </div>
+
+
+                <button
+                  type="button"
+                  class="remove"
+                  onclick="
+                    hapusDariKeranjang(
+                      '${escapeJs(
+                        item.id
+                      )}'
+                    )
+                  "
+                >
+                  ✕
+                </button>
+
+
+              </div>
+
+            `
+
+          );
+
+        }
+      );
+
+
+      keranjang.forEach(
+        item => {
+          muatFotoKey(
+            String(
+              item.foto ||
+              item.id ||
+              ''
+            ).trim()
+          );
+        }
+      );
+
+
+      document.getElementById(
+        'cartTotal'
+      ).textContent =
+
+        formatRupiah(
+          totalKeranjang()
+        );
+
+    }
+
+
+
+    /* =====================================================
+       BUKA KERANJANG
+    ===================================================== */
+
+    function bukaKeranjang() {
+
+
+      renderKeranjang();
+
+
+      bukaModal(
+        'cartModal'
+      );
+
+    }
+
+
+
+    /* =====================================================
+       FORM PESANAN
+    ===================================================== */
+
+    function bukaFormPesanan() {
+
+
+      if (
+        keranjang.length ===
+        0
+      ) {
+
+
+        tampilkanToast(
+
+          'Keranjang masih kosong.',
+
+          'error'
+
+        );
+
+
+        return;
+
+      }
+
+
+      renderRingkasanPesanan();
+
+
+      tutupModal(
+        'cartModal'
+      );
+
+
+      bukaModal(
+        'orderModal'
+      );
+
+    }
+
+
+
+    /* =====================================================
+       RINGKASAN PESANAN
+    ===================================================== */
+
+    function renderRingkasanPesanan() {
+
+
+      const container =
+
+        document.getElementById(
+          'orderSummaryItems'
+        );
+
+
+      container.innerHTML =
+        '';
+
+
+      keranjang.forEach(
+        item => {
+
+
+          container.insertAdjacentHTML(
+
+            'beforeend',
+
+            `
+
+              <div
+                class="orderSummaryRow"
+              >
+
+                <span>
+
+                  ${escapeHtml(
+                    item.nama
+                  )}
+
+                  ×
+                  ${item.jumlah}
+
+                </span>
+
+
+                <span>
+
+                  ${formatRupiah(
+
+                    item.harga *
+                    item.jumlah
+
+                  )}
+
+                </span>
+
+              </div>
+
+            `
+
+          );
+
+        }
+      );
+
+
+      document.getElementById(
+        'orderSummaryTotal'
+      ).textContent =
+
+        formatRupiah(
+          totalKeranjang()
+        );
+
+    }
+
+
+
+    /* =====================================================
+       KIRIM PESANAN
+    ===================================================== */
+
+    async function kirimPesanan(
+      event
+    ) {
+
+
+      event.preventDefault();
+
+
+      if (
+        keranjang.length ===
+        0
+      ) {
+
+
+        tampilkanToast(
+
+          'Keranjang kosong.',
+
+          'error'
+
+        );
+
+
+        return;
+
+      }
+
+
+      const nama =
+
+        document
+          .getElementById(
+            'customerName'
+          )
+          .value
+          .trim();
+
+
+      const whatsapp =
+
+        document
+          .getElementById(
+            'customerWhatsapp'
+          )
+          .value
+          .trim();
+
+
+      const alamat =
+
+        document
+          .getElementById(
+            'customerAddress'
+          )
+          .value
+          .trim();
+
+
+      const catatan =
+
+        document
+          .getElementById(
+            'customerNote'
+          )
+          .value
+          .trim();
+
+
+      if (
+        !nama ||
+        !whatsapp
+      ) {
+
+
+        tampilkanToast(
+
+          'Nama dan nomor WhatsApp wajib diisi.',
+
+          'error'
+
+        );
+
+
+        return;
+
+      }
+
+
+      const payload = {
+
+
+        nama:
+          nama,
+
+
+        whatsapp:
+          whatsapp,
+
+
+        alamat:
+          alamat,
+
+
+        catatan:
+          catatan,
+
+
+        items:
+
+          keranjang.map(
+
+            item => ({
+
+              id:
+                item.id,
+
+              nama:
+                item.nama,
+
+              harga:
+                item.harga,
+
+              jumlah:
+                item.jumlah
+
+            })
+
+          ),
+
+
+        total:
+          totalKeranjang(),
+
+
+        waktu:
+          new Date().toISOString()
+
+      };
+
+
+      const button =
+
+        document.getElementById(
+          'submitOrderButton'
+        );
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        'Mengirim pesanan...';
+
+
+      try {
+
+
+        const body =
+
+          new URLSearchParams();
+
+
+        body.set(
+          'action',
+          'saveOrder'
+        );
+
+
+        body.set(
+
+          'payload',
+
+          JSON.stringify(
+            payload
+          )
+
+        );
+
+
+        const response =
+
+          await fetch(
+
+            API_URL,
+
+            {
+
+              method:
+                'POST',
+
+              body:
+                body
+
+            }
+
+          );
+
+
+        if (
+          !response.ok
+        ) {
+
+          throw new Error(
+
+            'Server menolak permintaan pesanan.'
+
+          );
+
+        }
+
+
+        const result =
+
+          await response.json();
+
+
+        if (
+          !result.ok
+        ) {
+
+          throw new Error(
+
+            result.message ||
+
+            'Pesanan gagal disimpan.'
+
+          );
+
+        }
+
+
+        const nomorPesanan =
+
+          result.noPesanan ||
+
+          result.orderNumber ||
+
+          result.nomorPesanan ||
+
+          '';
+
+
+        tampilkanToast(
+
+          'Pesanan berhasil disimpan.',
+
+          'success'
+
+        );
+
+
+        bukaHasilPesanan(
+
+          payload,
+
+          nomorPesanan
+
+        );
+
+
+      } catch (error) {
+
+
+        console.error(
+          error
+        );
+
+
+        tampilkanToast(
+
+          'Pesanan belum dapat dikonfirmasi oleh browser.',
+
+          'error'
+
+        );
+
+
+        tampilkanTombolWhatsAppFallback(
+          payload
+        );
+
+
+      } finally {
+
+
+        button.disabled =
+          false;
+
+
+        button.textContent =
+          'Kirim Pesanan';
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       HASIL PESANAN
+    ===================================================== */
+
+    function bukaHasilPesanan(
+
+      payload,
+
+      nomorPesanan
+
+    ) {
+
+
+      const nomorWA =
+
+        normalisasiNomorWhatsapp(
+
+          pengaturan.WHATSAPP
+
+        );
+
+
+      const pesan =
+
+        buatPesanWhatsApp(
+
+          payload,
+
+          nomorPesanan
+
+        );
+
+
+      tutupModal(
+        'orderModal'
+      );
+
+
+      const detail =
+
+        nomorPesanan
+
+          ? 'Nomor pesanan: ' +
+            nomorPesanan
+
+          : 'Pesanan telah dikirim.';
+
+
+      const lanjut =
+
+        confirm(
+
+          detail +
+
+          '\n\nKlik OK untuk membuka WhatsApp toko.'
+
+        );
+
+
+      if (
+        lanjut &&
+        nomorWA
+      ) {
+
+
+        bukaWhatsApp(
+
+          nomorWA,
+
+          pesan
+
+        );
+
+      }
+
+
+      keranjang = [];
+
+
+      document
+        .getElementById(
+          'orderForm'
+        )
+        .reset();
+
+
+      renderKeranjang();
+
+
+      setTimeout(
+        () => loadData(),
+        800
+      );
+
+    }
+
+
+
+    /* =====================================================
+       FALLBACK WHATSAPP
+    ===================================================== */
+
+    function tampilkanTombolWhatsAppFallback(
+
+      payload
+
+    ) {
+
+
+      const nomorWA =
+
+        normalisasiNomorWhatsapp(
+
+          pengaturan.WHATSAPP
+
+        );
+
+
+      if (!nomorWA) {
+        return;
+      }
+
+
+      const pesan =
+
+        buatPesanWhatsApp(
+
+          payload,
+
+          ''
+
+        );
+
+
+      const buka =
+
+        confirm(
+
+          'Browser tidak dapat membaca balasan server.\n\n' +
+
+          'Apakah Anda ingin mengirim rincian pesanan melalui WhatsApp?'
+
+        );
+
+
+      if (buka) {
+
+
+        bukaWhatsApp(
+
+          nomorWA,
+
+          pesan
+
+        );
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       PESAN WHATSAPP
+    ===================================================== */
+
+    function buatPesanWhatsApp(
+
+      payload,
+
+      nomorPesanan
+
+    ) {
+
+
+      let teks =
+
+        'Halo, saya ingin memesan produk CCTV.%0A%0A';
+
+
+      if (nomorPesanan) {
+
+
+        teks +=
+
+          '*No. Pesanan:* ' +
+
+          nomorPesanan +
+
+          '%0A';
+
+      }
+
+
+      teks +=
+
+        '*Nama:* ' +
+
+        encodeURIComponent(
+          payload.nama
+        ) +
+
+        '%0A';
+
+
+      teks +=
+
+        '*WhatsApp:* ' +
+
+        encodeURIComponent(
+          payload.whatsapp
+        ) +
+
+        '%0A';
+
+
+      if (
+        payload.alamat
+      ) {
+
+
+        teks +=
+
+          '*Alamat:* ' +
+
+          encodeURIComponent(
+            payload.alamat
+          ) +
+
+          '%0A';
+
+      }
+
+
+      teks +=
+
+        '%0A*Pesanan:*%0A';
+
+
+      payload.items.forEach(
+        item => {
+
+
+          teks +=
+
+            '- ' +
+
+            encodeURIComponent(
+              item.nama
+            ) +
+
+            ' × ' +
+
+            item.jumlah +
+
+            ' = ' +
+
+            encodeURIComponent(
+
+              formatRupiah(
+
+                item.harga *
+                item.jumlah
+
+              )
+
+            ) +
+
+            '%0A';
+
+        }
+      );
+
+
+      teks +=
+
+        '%0A*Total:* ' +
+
+        encodeURIComponent(
+
+          formatRupiah(
+            payload.total
+          )
+
+        );
+
+
+      if (
+        payload.catatan
+      ) {
+
+
+        teks +=
+
+          '%0A*Catatan:* ' +
+
+          encodeURIComponent(
+            payload.catatan
+          );
+
+      }
+
+
+      return teks;
+
+    }
+
+
+
+    /* =====================================================
+       NOMOR WHATSAPP
+    ===================================================== */
+
+    function normalisasiNomorWhatsapp(
+      nomor
+    ) {
+
+
+      let value =
+
+        String(
+          nomor || ''
+        )
+
+        .replace(
+          /\D/g,
+          ''
+        );
+
+
+      if (
+        value.startsWith(
+          '0'
+        )
+      ) {
+
+
+        value =
+
+          '62' +
+
+          value.substring(
+            1
+          );
+
+      }
+
+
+      return value;
+
+    }
+
+
+
+    /* =====================================================
+       BUKA WHATSAPP
+    ===================================================== */
+
+    function bukaWhatsApp(
+
+      nomor,
+
+      pesan
+
+    ) {
+
+
+      const url =
+
+        'https://wa.me/' +
+
+        nomor +
+
+        '?text=' +
+
+        pesan;
+
+
+      window.open(
+
+        url,
+
+        '_blank'
+
+      );
+
+    }
+
+
+
+    /* =====================================================
+       MODAL
+    ===================================================== */
+
+    function bukaModal(
+      id
+    ) {
+
+
+      document
+        .getElementById(
+          id
+        )
+        .classList.remove(
+          'hidden'
+        );
+
+
+      document.body.style.overflow =
+        'hidden';
+
+    }
+
+
+
+    function tutupModal(
+      id
+    ) {
+
+
+      document
+        .getElementById(
+          id
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      const adaModalTerbuka =
+
+        document.querySelector(
+
+          '.modal:not(.hidden)'
+
+        );
+
+
+      if (
+        !adaModalTerbuka
+      ) {
+
+
+        document.body.style.overflow =
+          '';
+
+      }
+
+    }
+
+
+
+    function tutupModalJikaKlikLuar(
+
+      event,
+
+      id
+
+    ) {
+
+
+      if (
+        event.target.id ===
+        id
+      ) {
+
+
+        tutupModal(
+          id
+        );
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    let toastTimer =
+      null;
+
+
+    function tampilkanToast(
+
+      pesan,
+
+      tipe = 'success'
+
+    ) {
+
+
+      const toast =
+
+        document.getElementById(
+          'toast'
+        );
+
+
+      toast.textContent =
+        pesan;
+
+
+      toast.className =
+
+        'show ' +
+        tipe;
+
+
+      clearTimeout(
+        toastTimer
+      );
+
+
+      toastTimer =
+
+        setTimeout(
+
+          () => {
+
+            toast.className =
+              '';
+
+          },
+
+          3500
+
+        );
+
+    }
+
+
+
+    /* =====================================================
+       ERROR KONEKSI
+    ===================================================== */
+
+    function tampilkanErrorKoneksi(
+
+      pesan
+
+    ) {
+
+
+      const grid =
+
+        document.getElementById(
+          'productGrid'
+        );
+
+
+      document.getElementById(
+        'emptyState'
+      ).classList.add(
+        'hidden'
+      );
+
+
+      grid.innerHTML = `
+
+        <div
+
+          style="
+            grid-column:1/-1;
+            padding:30px;
+            border:1px solid
+              rgba(255,92,108,.4);
+            border-radius:18px;
+            background:#101d2d;
+            text-align:center;
+          "
+
+        >
+
+
+          <div
+            style="
+              font-size:38px;
+            "
+          >
+            ⚠️
+          </div>
+
+
+          <h3
+            style="
+              margin:10px 0;
+            "
+          >
+
+            Koneksi ke server
+            belum berhasil
+
+          </h3>
+
+
+          <p
+            style="
+              color:#9fb0c7;
+              line-height:1.6;
+            "
+          >
+
+            ${escapeHtml(
+
+              pesan ||
+
+              'Periksa URL Web App Apps Script.'
+
+            )}
+
+          </p>
+
+
+          <button
+
+            type="button"
+
+            class="
+              btn
+              btnPrimary
+            "
+
+            onclick="loadData()"
+
+          >
+
+            Coba Lagi
+
+          </button>
+
+
+        </div>
+
+      `;
+
+
+      document.getElementById(
+        'productInfo'
+      ).textContent =
+
+        'Gagal mengambil data dari server';
+
+    }
+
+
+
+    /* =====================================================
+       LOADING
+    ===================================================== */
+
+    function tampilkanLoading(
+      tampil
+    ) {
+
+
+      const screen =
+
+        document.getElementById(
+          'loadingScreen'
+        );
+
+
+      if (tampil) {
+
+
+        screen.classList.remove(
+          'hidden'
+        );
+
+
+      } else {
+
+
+        screen.classList.add(
+          'hidden'
+        );
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       ESC KEY
+    ===================================================== */
+
+    document.addEventListener(
+
+      'keydown',
+
+      function(event) {
+
+
+        if (
+          event.key !==
+          'Escape'
+        ) {
+
+          return;
+
+        }
+
+
+        document
+          .querySelectorAll(
+            '.modal:not(.hidden)'
+          )
+
+          .forEach(
+            modal => {
+
+              modal.classList.add(
+                'hidden'
+              );
+
+            }
+          );
+
+
+        document.body.style.overflow =
+          '';
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       MULAI APLIKASI
+    ===================================================== */
+
+    document.addEventListener(
+
+      'DOMContentLoaded',
+
+      function() {
+
+
+        document.getElementById(
+          'copyrightYear'
+        ).textContent =
+
+          new Date()
+            .getFullYear();
+
+
+        renderKeranjang();
+
+
+        loadData();
+
+      }
+
+    );
+
+
+  </script>
+
+
+</body>
+
+</html>
