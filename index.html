@@ -2933,104 +2933,97 @@
        TIDAK PERLU Google Drive untuk foto.
     ===================================================== */
 
-    const FOLDER_FOTO_GITHUB = 
-    'https://diza999.github.io/KATALOG-HANS-CCTV/';
+    const GITHUB_FOTO_URL =
+  'https://diza999.github.io/KATALOG-HANS-CCTV/';
 
 
-    function muatSemuaFotoProduk() {
+function muatSemuaFotoProduk() {
 
-      produkTampil.forEach(
-        produk => {
+  produkTampil.forEach(function(produk) {
 
-          muatFotoKey(
-            String(
-              produk.foto ||
-              produk.id ||
-              ''
-            ).trim()
-          );
+    const key =
+      String(
+        produk.foto ||
+        produk.id ||
+        ''
+      ).trim();
 
-        }
-      );
-
+    if (key) {
+      muatFotoKey(key);
     }
 
+  });
 
-    function muatFotoKey(key) {
-
-      key = String(key || '').trim();
-
-      if (!key) {
-        return Promise.resolve();
-      }
+}
 
 
-      /*
-       * Jika kolom FOTO sudah berisi URL lengkap,
-       * langsung gunakan URL tersebut.
-       */
+function muatFotoKey(key) {
+
+  key = String(key || '').trim();
+
+  if (!key) {
+    return;
+  }
+
+
+  let src = '';
+
+
+  /*
+   * Jika kolom FOTO berisi URL lengkap
+   */
+  if (
+    key.startsWith('http://') ||
+    key.startsWith('https://') ||
+    key.startsWith('data:')
+  ) {
+
+    src = key;
+
+  }
+
+  /*
+   * Jika FOTO hanya berisi nama file
+   * contoh:
+   * DVR-001.jpg
+   */
+  else {
+
+    src =
+      GITHUB_FOTO_URL +
+      encodeURIComponent(key);
+
+  }
+
+
+  document
+    .querySelectorAll('img[data-foto-key]')
+    .forEach(function(img) {
 
       if (
-        key.startsWith('http://') ||
-        key.startsWith('https://') ||
-        key.startsWith('data:')
+        String(img.dataset.fotoKey || '').trim() ===
+        key
       ) {
 
-        pasangFotoKeSemuaElemen(
-          key,
-          key
-        );
+        img.src = src;
 
-        return Promise.resolve(key);
+        img.onerror = function() {
+
+          console.log(
+            'Foto tidak ditemukan:',
+            src
+          );
+
+          img.src =
+            FOTO_PLACEHOLDER;
+
+        };
 
       }
 
+    });
 
-      /*
-       * Foto sekarang dibaca langsung dari GitHub Pages.
-       * Contoh:
-       * KAM-001.jpg
-       * menjadi:
-       * KAM-001.jpg
-       */
-
-      const src =
-        FOLDER_FOTO_GITHUB +
-        encodeURIComponent(key);
-
-
-      pasangFotoKeSemuaElemen(
-        key,
-        src
-      );
-
-
-      return Promise.resolve(src);
-
-    }
-
-
-    function pasangFotoKeSemuaElemen(
-      key,
-      src
-    ) {
-
-      document
-        .querySelectorAll('img[data-foto-key]')
-        .forEach(img => {
-
-          if (
-            String(img.dataset.fotoKey || '') ===
-            String(key)
-          ) {
-
-            img.src = src;
-
-          }
-
-        });
-
-    }
+}
 
 
 
